@@ -1,11 +1,13 @@
-import './App.css'
+import Home from './pages/Home.jsx'
+{/*import Cities from './pages/Cities.jsx'*/}
 
 function App() {
   return (
     <>
-      <h1>Hola!</h1>
+      <Home/>    
+      {/*<Cities/> */}
     </>
   )
 }
 
-export default App
+export default App;
