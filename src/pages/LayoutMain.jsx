@@ -4,7 +4,7 @@ import Hero from '../components/Hero.jsx'
 
 const LayoutMain = (props) => {
     return (
-      <div className="w-full min-h-screen flex flex-col">
+      <div className="w-full min-h-screen flex flex-col bg-orange-100">
         <Header />
         <Hero banner={props.banner} />
         {props.children}
