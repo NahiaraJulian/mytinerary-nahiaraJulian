@@ -1,4 +1,4 @@
-const Header = (props) => {
+const Header = () => {
     return (
         <header className="flex justify-between p-2">
           <img src="/logoblack.png" alt="logo MyTinerary black" className="h-11"/>
