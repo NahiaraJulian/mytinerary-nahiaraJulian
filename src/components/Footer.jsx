@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
       <footer className="bg-teal-500 mt-5">
         <nav className="flex justify-center gap-11 bg-emerald-600">
-          <a href="#" className="text-white sm:text-xl">Home</a>
-          <a href="#" className="text-white sm:text-xl">Cities</a>
+          <Link to="/" className="text-white sm:text-xl">Home</Link>
+          <Link to="/cities" className="text-white sm:text-xl">Cities</Link>
         </nav>
 
         <div className="flex items-center h-28 relative pb-6 pl-6">

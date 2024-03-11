@@ -1,12 +1,12 @@
+import { Link } from 'react-router-dom';
 import Carrousel from '../components/Carrousel.jsx';
+import Hero from '../components/Hero.jsx';
 import LayoutMain from './LayoutMain.jsx'
 
-
 const Home = () => {
-  
-
   return (
-    <LayoutMain banner="/banner.png" classN="border-b border-orange-700" >
+    <LayoutMain>
+      <Hero banner="/banner.png" />
       <main className="w-full min-h-screen flex flex-col items-center gap-5 px-1">
         <p className="px-2">
           Our app will help you find the perfect path for you next trip. With an easy-to-use interface
@@ -14,7 +14,7 @@ const Home = () => {
           discover new and wonderful places with incredible activities!
         </p>
 
-        <button className="w-2/6 bg-teal-500 border-2 border-emerald-600 rounded-full text-white text-xl font-semibold p-1">View more</button>
+        <Link to="/cities" className="w-2/6 bg-teal-500 border-2 border-emerald-600 rounded-full text-white text-center text-xl font-semibold p-1">View more</Link>
 
         <section className="flex flex-wrap justify-center gap-5 mt-1">
           <h2 className="w-full text-center text-2xl font-semibold text-emerald-600 pt-4">Popular MyTineraries</h2>
