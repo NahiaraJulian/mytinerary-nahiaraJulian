@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { getCities } from "../services/citiesQueries";
-import ItemCarrousel from "../components/ItemCarrousel";
 import LayoutMain from "./LayoutMain"
+import Cards from "../components/Cards";
 
 const Cities = () => {
   const [cities, SetCities] = useState([])
@@ -30,18 +30,20 @@ const Cities = () => {
         <img src="/banner.png" alt="banner" className='w-full h-full object-cover' />
 
         <section className="absolute flex flex-wrap justify-center items-center gap-3 px-3">
-          <h1 className="font-bold text-emerald-600 text-5xl sm:text-7xl md:text-8xl lg:text-9xl">Cities</h1>
+          <h1 className="font-bold text-orange-500 text-5xl sm:text-7xl md:text-8xl lg:text-9xl">Cities</h1>
         </section>
       </div>
 
       <main className="w-full min-h-screen flex flex-col items-center gap-5 px-1">
-        <search>
-          <input type="text" name="City_name" onInput={handleInput} ref={inputSearch} />
+        <search className="w-56 sm:w-96 flex justify-center items-center relative">
+          <input type="text" name="City_name" placeholder="Search..." onInput={handleInput} ref={inputSearch}
+            className="w-full border-2 border-orange-500 rounded-full px-2"/>
+            <img src="/search.png" alt="icon search" className="w-4 h-4 absolute right-0 mr-2"/>
         </search>
         
-        <div className="flex flex-wrap justify-center gap-1">
+        <div className="flex flex-wrap justify-center gap-5">
           {filteredC.length > 0 && filteredC.map((city) => (
-            <ItemCarrousel key={city.name} city={city} />
+            <Cards key={city.name} city={city} />
           ))}
         </div>
       </main>
