@@ -1,6 +1,7 @@
 import LayoutMain from "./LayoutMain"
 
-const Cities = () => {
+const Cities = () => { 
+
     return (
         <LayoutMain>
             <div className="flex justify-center items-center relative w-full h-[30vh] sm:h-[40vh] mb-5">
