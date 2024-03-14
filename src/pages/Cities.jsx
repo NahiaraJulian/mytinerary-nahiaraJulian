@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { getCities } from "../services/citiesQueries";
 import LayoutMain from "./LayoutMain"
-import Cards from "../components/Cards";
+import CardCity from "../components/CardCity";
 
 const Cities = () => {
   const [cities, SetCities] = useState([])
@@ -10,7 +10,6 @@ const Cities = () => {
 
   useEffect(() => {
     getCities().then((elements) => {
-      console.log(elements.data)
       SetCities(elements.data)
       SetFilteredC(elements.data)
     })
@@ -23,6 +22,9 @@ const Cities = () => {
 
   const filterByName = (listCities, value) =>
     listCities.filter((city) => city.name.toLowerCase().startsWith(value.toLowerCase().trim()));
+
+  const cityCard = filteredC.map( (city) => (<CardCity key={city.name} city={city}/>));
+  
 
   return (
     <LayoutMain>
@@ -38,13 +40,11 @@ const Cities = () => {
         <search className="w-56 sm:w-96 flex justify-center items-center relative">
           <input type="text" name="City_name" placeholder="Search..." onInput={handleInput} ref={inputSearch}
             className="w-full border-2 border-orange-500 rounded-full px-2"/>
-            <img src="/search.png" alt="icon search" className="w-4 h-4 absolute right-0 mr-2"/>
+          <img src="/search.png" alt="icon search" className="w-4 h-4 absolute right-0 mr-2"/>
         </search>
         
         <div className="flex flex-wrap justify-center gap-5">
-          {filteredC.length > 0 && filteredC.map((city) => (
-            <Cards key={city.name} city={city} />
-          ))}
+          {filteredC.length > 0 ? cityCard : <h3>Oh, sorry! No city found</h3>}
         </div>
       </main>
     </LayoutMain>
