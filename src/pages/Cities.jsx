@@ -2,29 +2,30 @@ import { useState, useEffect, useRef } from "react";
 import { getCities } from "../services/citiesQueries";
 import LayoutMain from "./LayoutMain"
 import CardCity from "../components/CardCity";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByName, load } from "../redux/actions/citiesActions";
+
 
 const Cities = () => {
-  const [cities, SetCities] = useState([])
-  const [filteredC, SetFilteredC] = useState([])
+  //guardar las cities con redux. se debe configurar un reducer para las cities
   const inputSearch = useRef(null)
+
+  const dispatch = useDispatch()
+  //useSelector trae el store completo y retorna lo que se necesita, en este caso el array de las ciudades filtradas
+  const filtered = useSelector((store) => store.cities.filteredCities)
+  console.log(filtered);
 
   useEffect(() => {
     getCities().then((elements) => {
-      SetCities(elements.data)
-      SetFilteredC(elements.data)
+      dispatch(load(elements.data)) //despachar la accion load que le manda los personajes al reducer
     })
   }, []);
 
   const handleInput = () => {
-    const aux = filterByName(cities, inputSearch.current.value)
-    SetFilteredC(aux)
+    dispatch(filterByName(inputSearch.current.value) )
   }
 
-  const filterByName = (listCities, value) =>
-    listCities.filter((city) => city.name.toLowerCase().startsWith(value.toLowerCase().trim()));
-
-  const cityCard = filteredC.map( (city) => (<CardCity key={city.name} city={city}/>));
-  
+  const cityCard = filtered.map( (city) => (<CardCity key={city.name} city={city}/>));
 
   return (
     <LayoutMain>
@@ -44,7 +45,7 @@ const Cities = () => {
         </search>
         
         <div className="flex flex-wrap justify-center gap-5">
-          {filteredC.length > 0 ? cityCard : <h3>Oh, sorry! No city found</h3>}
+          {filtered.length > 0 ? cityCard : <h3>Oh, sorry! No city found</h3>}
         </div>
       </main>
     </LayoutMain>
