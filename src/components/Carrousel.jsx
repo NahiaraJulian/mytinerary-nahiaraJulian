@@ -1,8 +1,23 @@
 import ItemCarrousel from './ItemCarrousel'
-import { cities } from '../data/data.js'
-import { useState } from 'react'
+//import { cities } from '../data/data.js'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { getCities } from '../services/citiesQueries.js'
 
 const Carrousel = () => {
+  const params = useParams()
+  const [cities, setCity] = useState([])
+
+  useEffect(() => {
+    getCities(params)
+      .then((element) => {
+        console.log(element.data);
+        setCity(element.data)
+      })
+  }, []);
+
+  console.log(cities);
+
   const [firstCity, SetFirst] = useState(0)
   const [lastCity, SetLast] = useState(4)
 
