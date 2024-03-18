@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import LayoutMain from './LayoutMain';
 import { getCitiesById } from '../services/citiesQueries';
 import { useEffect, useState } from 'react';
+import Itinerary from '../components/Itinerary';
 
 export const DetailsCity = () => {
   const params = useParams()
@@ -22,6 +23,11 @@ export const DetailsCity = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  console.log(city);
+  console.log(city.itineraries);
+  //const itinerarios = city.itineraries
+  //console.log(itinerarios.map((itinerario) => itinerario.duration ))
+
   if (loading) {
     return (
       <LayoutMain>
@@ -38,11 +44,34 @@ export const DetailsCity = () => {
           <h3 className="text-2xl font-light"> {city.country} </h3>
         </div>
 
-        <section className="flex w-full flex-col gap-4 px-2">
-          <img src={city.image} alt={"Image of " + city.name} className="h-96 w-full object-cover sm:w-1/2" />
+        <section className="flex w-full flex-wrap gap-3 px-3">
+          <img src={city.image} alt={"Image of " + city.name} className="h-72 w-full object-cover rounded-md sm:w-1/2 sm:h-[250px] " />
+          <div className="flex flex-col gap-3 sm:w-[48%] pt-2">
+            <p> <span className="font-semibold text-orange-600">Currency:</span> {city.currency} </p>
+            <p> <span className="font-semibold text-orange-600">Language:</span> {city.language} </p>
+            <p> {city.description} </p>
+          </div>
+          {/*
           <p className="italic">Under construction</p>
           <Link to="/cities" className="self-center bg-orange-500 border-2 border-orange-600 rounded-full text-white text-center text-xl font-semibold px-3 mt-5">See more cities!</Link>
+           */}
         </section>
+
+        <div className="flex flex-col gap-4 w-full px-3">
+          <h3 className="text-3xl text-center font-semibold text-emerald-600" >Itineraries</h3>
+          {city.itineraries.length > 0 ?
+            <>
+              <Itinerary itinerary={city.itineraries[0]} />
+              <Itinerary itinerary={city.itineraries[1]} />
+            </>
+            : 
+            <>
+              <p className='text-center' >There are no itineraries available here yet, but you can search in another city</p>
+              <Link to="/cities" className="self-center bg-orange-500 border-2 border-orange-600 rounded-full text-white text-center text-xl font-semibold px-3 mt-5">See more cities!</Link>
+            </>
+            }
+
+        </div>
       </main>
     </LayoutMain>
   )
