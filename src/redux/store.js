@@ -9,4 +9,4 @@ export default configureStore({
     reducer: store
 })
 
-//cada vez que se necesita otro estado en el store, se debe crear un reducer nuevo e importarlo y guardarlo en una prop
+//cada vez que se necesita otro estado en el store, se debe crear una nueva propiedad al reducer e importarlo y guardarlo en una prop
