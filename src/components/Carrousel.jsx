@@ -11,12 +11,9 @@ const Carrousel = () => {
   useEffect(() => {
     getCities(params)
       .then((element) => {
-        console.log(element.data);
         setCity(element.data)
       })
   }, []);
-
-  console.log(cities);
 
   const [firstCity, SetFirst] = useState(0)
   const [lastCity, SetLast] = useState(4)
