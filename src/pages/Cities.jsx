@@ -13,7 +13,6 @@ const Cities = () => {
   const dispatch = useDispatch()
   //useSelector trae el store completo y retorna lo que se necesita, en este caso el array de las ciudades filtradas
   const filtered = useSelector((store) => store.cities.filteredCities)
-  console.log(filtered);
 
   useEffect(() => {
     getCities().then((elements) => {

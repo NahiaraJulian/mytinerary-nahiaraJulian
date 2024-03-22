@@ -27,6 +27,7 @@ const loginToken = async() => {
         })
         return resp.data
     } catch (error) {
+        console.log(error);
         return error
     }
 }

@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import alerts from "../utils/alerts"
 import authQueries from "../services/authQueries"
 import LayoutMain from "./LayoutMain"
+import { useDispatch } from "react-redux"
+import { signIn } from "../redux/actions/userAction"
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const SignIn = () => {
   })
 
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
 
   const handleInput = (e) => {
     const name = e.target.name
@@ -32,6 +36,7 @@ const SignIn = () => {
     authQueries.login(aux).then((response) => {
       console.log(response);
       if (response.status == 200) {
+        dispatch(signIn(response.data));
         alerts.success(response.statusMsg);
         navigate("/")
       } else {
