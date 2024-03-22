@@ -11,13 +11,14 @@ import DetailsCity from './pages/DetailsCity.jsx';
 import SignUp from './pages/SignUp.jsx';
 import SignIn from "./pages/SignIn.jsx";
 import { signIn } from "./redux/actions/userAction.js";
+import AuthPublicViews from "./guard/AuthPublicViews.jsx";
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     authQueries.loginToken().then((res) => {
-      if(res.status == 200){
+      if (res.status == 200) {
         dispatch(signIn(res.data))
         alerts.success("Welcome " + res.data.first_name + "!")
       }
@@ -27,14 +28,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cities" element={<Cities />} />
-            <Route path="/cities/:id" element={<DetailsCity />} />
-            <Route path="/signup" element={<SignUp/>} />
-            <Route path="/signin" element={<SignIn/>} />
-          </Routes>
-        <ToastContainer/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/cities/:id" element={<DetailsCity />} />
+          <Route element={<AuthPublicViews />} >
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+          </Route>
+        </Routes>
+        <ToastContainer />
       </BrowserRouter>
     </>
   )
