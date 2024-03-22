@@ -14,7 +14,7 @@ const Home = () => {
           discover new and wonderful places with incredible activities!
         </p>
 
-        <Link to="/cities" className="w-2/6 bg-teal-500 border-2 border-emerald-600 rounded-full text-white text-center text-xl font-semibold p-1">View more</Link>
+        <Link to="/cities" className="w-52 bg-teal-500 border-2 border-emerald-600 rounded-full text-white text-center text-xl font-semibold p-1 sm:w-2/6">View more</Link>
 
         <section className="flex flex-wrap justify-center gap-5 mt-1">
           <h2 className="w-full text-center text-2xl font-semibold text-emerald-600 pt-4">Popular MyTineraries</h2>

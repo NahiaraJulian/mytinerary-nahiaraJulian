@@ -32,7 +32,8 @@ const Cities = () => {
         <img src="/banner.png" alt="banner" className='w-full h-full object-cover' />
 
         <section className="absolute flex flex-wrap justify-center items-center gap-3 px-3">
-          <h1 className="font-bold text-orange-500 text-5xl sm:text-7xl md:text-8xl lg:text-9xl">Cities</h1>
+          <img src="/logoblack.png" alt="logo MyTinerary black" className="h-16 sm:h-32 lg:h-44" />
+          <h1 className="font-bold text-orange-500 text-5xl sm:text-8xl lg:text-9xl">Cities</h1>
         </section>
       </div>
 
