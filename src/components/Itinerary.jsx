@@ -21,7 +21,6 @@ const Itinerary = ({ itinerary }) => {
           <img src={itinerary.guide_image} alt="guide" className="w-[50px] rounded-full" />
           <p className="text-xl"> {itinerary.guide} </p>
         </div>
-        <button class="text-5xl">♥</button>
       </div>
 
       <h4 className="text-2xl font-semibold"> {itinerary.title} </h4>
